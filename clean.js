@@ -1,6 +1,5 @@
-import rm from 'gulp-rm'
-
-import Base from './base.js'
+const rm = require('gulp-rm')
+const Base = require('./base.js')
 
 class Delete extends Base {
   constructor (gulp, config) {
@@ -14,4 +13,4 @@ class Delete extends Base {
   }
 }
 
-export default Delete
+module.exports = Delete

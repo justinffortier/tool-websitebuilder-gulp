@@ -1,13 +1,10 @@
-/* eslint import/no-extraneous-dependencies: 0 */
-
-import util from 'gulp-util'
-import kit from 'gulp-kit'
-import htmlmin from 'gulp-htmlmin'
-import gulpif from 'gulp-if'
-import mustache from 'gulp-mustache'
-import rename from 'gulp-rename'
-
-import Base from './base'
+const util = require('gulp-util')
+const kit = require('gulp-kit')
+const htmlmin = require('gulp-htmlmin')
+const gulpif = require('gulp-if')
+const mustache = require('gulp-mustache')
+const rename = require('gulp-rename')
+const Base = require( './base')
 
 class Kit extends Base {
   constructor (gulp, config) {
@@ -33,4 +30,4 @@ class Kit extends Base {
   }
 }
 
-export default Kit
+module.exports = Kit

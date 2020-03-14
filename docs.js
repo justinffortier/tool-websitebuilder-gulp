@@ -1,4 +1,4 @@
-import Base from './base.js'
+const Base = require('./base.js')
 
 class Docs extends Base {
   constructor (gulp, config) {
@@ -13,4 +13,4 @@ class Docs extends Base {
   }
 }
 
-export default Docs
+module.exports = Docs

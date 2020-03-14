@@ -1,4 +1,4 @@
-import Base from './base.js'
+const Base = require ('./base.js')
 
 class Fonts extends Base {
   constructor (gulp, config) {
@@ -13,4 +13,4 @@ class Fonts extends Base {
   }
 }
 
-export default Fonts
+module.exports = Fonts

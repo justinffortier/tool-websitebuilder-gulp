@@ -1,21 +1,19 @@
-/* eslint import/no-extraneous-dependencies: 0 */
+const cleanCSS = require('gulp-clean-css')
+const gulpSass = require('gulp-sass')
+const gulpif = require('gulp-if')
+const sourcemaps = require('gulp-sourcemaps')
 
-import cleanCSS from 'gulp-clean-css'
-import gulpSass from 'gulp-sass'
-import gulpif from 'gulp-if'
-import sourcemaps from 'gulp-sourcemaps'
-
-import Base from './base'
+const Base = require('./base')
 
 class Sass extends Base {
-  constructor (gulp, config) {
+  constructor(gulp, config) {
     super(gulp, config)
 
     gulp.task(`sass`, () => this.sass())
     gulp.task(`watch-sass`, () => gulp.watch(`./src/assets/css/**/*`, gulp.series(`sass`)))
   }
 
-  sass () {
+  sass() {
     return this.gulp.src(`./src/assets/css/**/*.*`)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
@@ -25,4 +23,4 @@ class Sass extends Base {
   }
 }
 
-export default Sass
+module.exports = Sass

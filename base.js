@@ -1,21 +1,13 @@
-/**
- * @Author: carterharrison
- * @Date:   2018-05-27T21:19:30-07:00
- * @Last modified by:   carterharrison
- * @Last modified time: 2018-05-27T21:19:36-07:00
- */
-
-/* eslint import/no-extraneous-dependencies: 0 */
-
-import { argv } from 'yargs'
-import util from 'gulp-util'
+const Yargs = require('yargs')
+const { argv } = Yargs
+const gulpUtil = require('gulp-util')
 
 class GulpBase {
   constructor (gulp, config) {
     this.gulp = gulp
     this._config = config
-    this.util = util
-    this.log = util.log
+    this.util = gulpUtil
+    this.log = gulpUtil.log
 
     this.port = argv.port || 8080
     this.lang = argv.lang || `en`
@@ -44,4 +36,4 @@ class GulpBase {
   }
 }
 
-export default GulpBase
+module.exports = GulpBase

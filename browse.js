@@ -1,6 +1,5 @@
-import server from 'gulp-server-io'
-
-import Base from './base'
+const server = require('gulp-server-io')
+const Base = require('./base')
 
 class Browse extends Base {
   constructor (gulp, config) {
@@ -18,4 +17,4 @@ class Browse extends Base {
   }
 }
 
-export default Browse
+module.exports = Browse

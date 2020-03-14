@@ -1,18 +1,15 @@
-/* eslint global-require: 0 */
-/* eslint import/no-extraneous-dependencies: 0 */
-
-import Browse from './browse.js'
-import Clean from './clean.js'
-import Fonts from './fonts.js'
-import Help from './help.js'
-import Images from './images.js'
-import Javascript from './javascript.js'
-import Kit from './codeKit.js'
-import Robots from './robots.js'
-import Sass from './sass.js'
-import Sitemap from './sitemap.js'
-import Video from './video.js'
-import Docs from './docs.js'
+const Browse = require('./browse.js')
+const Clean = require('./clean.js')
+const Fonts = require('./fonts.js')
+const Help = require('./help.js')
+const Images = require('./images.js')
+const Javascript = require('./javascript.js')
+const Kit = require('./codeKit.js')
+const Robots = require('./robots.js')
+const Sass = require('./sass.js')
+const Sitemap = require('./sitemap.js')
+const Video = require('./video.js')
+const Docs = require('./docs.js')
 
 class WebsiteBuilder {
   constructor (gulp, config) {

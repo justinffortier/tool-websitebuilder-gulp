@@ -1,13 +1,11 @@
-/* eslint import/no-extraneous-dependencies: 0 */
+const browserify = require('browserify')
+const buffer = require('vinyl-buffer')
+const uglify = require('gulp-uglify')
+const gulpif = require('gulp-if')
+const source = require('vinyl-source-stream')
+const sourcemaps = require('gulp-sourcemaps')
 
-import browserify from 'browserify'
-import buffer from 'vinyl-buffer'
-import uglify from 'gulp-uglify'
-import gulpif from 'gulp-if'
-import source from 'vinyl-source-stream'
-import sourcemaps from 'gulp-sourcemaps'
-
-import Base from './base.js'
+const Base = require('./base.js')
 
 class Javascript extends Base {
   constructor (gulp, config) {
@@ -38,4 +36,4 @@ class Javascript extends Base {
   }
 }
 
-export default Javascript
+module.exports = Javascript

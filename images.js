@@ -1,9 +1,6 @@
-/* eslint import/no-extraneous-dependencies: 0 */
-
-import imagemin from 'gulp-imagemin'
-import gulpif from 'gulp-if'
-
-import Base from './base.js'
+const imagemin = require('gulp-imagemin')
+const gulpif = require('gulp-if')
+const Base = require('./base.js')
 
 class Images extends Base {
   constructor (gulp, config) {
@@ -30,4 +27,4 @@ class Images extends Base {
   }
 }
 
-export default Images
+module.exports = Images
