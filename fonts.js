@@ -10,7 +10,7 @@ class Fonts extends Base {
   fonts () {
     console.log('FONNNNNNTSSS!');
     
-    return this.gulp.src(`./node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/*`)
+    return this.gulp.src(`./node_modules/@fortawesome/fontawesome-free/webfonts/*`)
       .pipe(this.dest(`webfonts`))
   }
 }
