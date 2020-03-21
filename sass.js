@@ -21,6 +21,7 @@ class Sass extends Base {
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
       .pipe(concat('all.min.css'))
+      .pipe(concat('all.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
       .pipe(stripCssComments({ preserve: false }))
       .pipe(cleanCSS())
