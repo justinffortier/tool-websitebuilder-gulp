@@ -2,6 +2,9 @@ const cleanCSS = require('gulp-clean-css')
 const gulpSass = require('gulp-sass')
 const gulpif = require('gulp-if')
 const sourcemaps = require('gulp-sourcemaps')
+var concat = require('gulp-concat');
+const stripCssComments = require('gulp-strip-css-comments');
+
 
 const Base = require('./base')
 
@@ -14,12 +17,14 @@ class Sass extends Base {
   }
 
   sass() {
-    return this.gulp.src(`./src/assets/css/**/*.*`)
+    return this.gulp.src(`./src/assets/css/all.scss`)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
-      .pipe(cleanCSS())
+      .pipe(concat('all.min.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
-      .pipe(this.dest(`assets/css`))
+      .pipe(stripCssComments({ preserve: false }))
+      .pipe(cleanCSS())
+      .pipe(this.dest('assets/css'));
   }
 }
 
