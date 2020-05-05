@@ -15,7 +15,10 @@ class Javascript extends Base {
     gulp.task(`js`, () => this.javascript())
     const { jsWatchPath } = config
     const watchPath = jsWatchPath || `./src/assets/js/**/*`
-    gulp.task(`watch-js`, () => gulp.watch(watchPath, gulp.series(`js`)))
+    gulp.task(`watch-js`, () => {
+      console.log('Watching JS at: ', watchPath);
+      return gulp.watch(watchPath, gulp.series(`js`))
+    })
   }
 
   javascript () {

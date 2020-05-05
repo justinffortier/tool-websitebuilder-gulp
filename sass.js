@@ -15,9 +15,13 @@ class Sass extends Base {
 
     gulp.task(`sass`, () => this.sass())
     
-    const { sassWatchPath } = config
-    const watchPath = sassWatchPath || `./src/assets/css/**/*`
-    gulp.task(`watch-sass`, () => gulp.watch(watchPath, gulp.series(`sass`)))
+    const { scssWatchPath } = config
+    const watchPath = scssWatchPath || `./src/assets/css/**/*`
+    const { scssWatchPath } = config
+    gulp.task(`watch-sass`, () => {
+      console.log('Watching SCSS at: ', watchPath);
+      return gulp.watch(watchPath, gulp.series(`sass`))
+    })
   }
 
   sass() {
