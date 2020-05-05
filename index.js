@@ -80,6 +80,16 @@ class WebsiteBuilder {
       ),
       (callback) => { callback() }
     )
+
+    gulp.task(
+      `develop-js-scss`,
+      gulp.series(
+        `cleanScss`,
+        `cleanJs`,
+        gulp.parallel(`watch-js`, `watch-sass`)
+      ),
+      (callback) => { callback() }
+    )
   }
 }
 
