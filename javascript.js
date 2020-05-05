@@ -10,15 +10,21 @@ const Base = require('./base.js')
 class Javascript extends Base {
   constructor (gulp, config) {
     super(gulp, config)
+    this.config = config
 
     gulp.task(`js`, () => this.javascript())
-    gulp.task(`watch-js`, () => gulp.watch(`./src/assets/js/**/*`, gulp.series(`js`)))
+    const { jsWatchPath } = config
+    const watchPath = jsWatchPath || `./src/assets/js/**/*`
+    gulp.task(`watch-js`, () => gulp.watch(watchPath, gulp.series(`js`)))
   }
 
   javascript () {
-    const file = `all.js`
+    const { jsPath, jsDest } = this.config
+    const path = jsPath || `src/assets/js/all.js`;
+    const dest = jsDest || `assets/js`;
+
     this.log(`Building Javascript [Optimized=${this.release}]`)
-    const b = browserify(`src/assets/js/${file}`, {
+    const b = browserify(path, {
       debug: !(this.release),
       targets: {
         browsers: [`last 2 versions`, `safari >= 7`]
@@ -32,7 +38,7 @@ class Javascript extends Base {
       .pipe(gulpif(!(this.release), sourcemaps.init().on(`error`, this.log)))
       .pipe(gulpif(this.release, uglify().on(`error`, this.log)))
       .pipe(gulpif(!(this.release), sourcemaps.write().on(`error`, this.log)))
-      .pipe(this.dest(`assets/js`).on(`error`, this.log))
+      .pipe(this.dest(dest).on(`error`, this.log))
   }
 }
 
