@@ -86,6 +86,8 @@ class WebsiteBuilder {
       gulp.series(
         `cleanScss`,
         `cleanJs`,
+        `js`,
+        `scss`,
         gulp.parallel(`watch-js`, `watch-sass`)
       ),
       (callback) => { callback() }
