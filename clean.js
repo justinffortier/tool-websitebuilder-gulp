@@ -21,7 +21,7 @@ class Delete extends Base {
       console.log('Config: "scssDest" is required to clean Scss ');
       return;
     }
-    return this.gulp.src(scssDest, { read: false })
+    return this.gulp.src(`${scssDest}/**/*`, { read: false })
       .pipe(rm())
   }
 
@@ -31,7 +31,7 @@ class Delete extends Base {
       console.log('Config: "jsDest" is required to clean Js ');
       return;
     }
-    return this.gulp.src(jsDest, { read: false })
+    return this.gulp.src(`${jsDest}/**/*`, { read: false })
       .pipe(rm())
   }
 }
