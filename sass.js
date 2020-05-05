@@ -11,6 +11,7 @@ const Base = require('./base')
 class Sass extends Base {
   constructor(gulp, config) {
     super(gulp, config)
+    this.config = config
 
     gulp.task(`sass`, () => this.sass())
     
@@ -20,7 +21,7 @@ class Sass extends Base {
   }
 
   sass() {
-    const { scssPath, scssDest } = config
+    const { scssPath, scssDest } = this.config
     const path = scssPath || `./src/assets/css/all.scss`;
     const dest = scssDest || `assets/css`;
 

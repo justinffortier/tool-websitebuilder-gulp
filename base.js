@@ -16,10 +16,12 @@ class GulpBase {
   }
 
   dest (_folder) {
+    const { distPath } = this._config
+    const dist = distPath || `./dist`
     if (_folder) {
-      return this.gulp.dest(`./dist/${_folder}`)
+      return this.gulp.dest(`${dist}/${_folder}`)
     }
-    return this.gulp.dest(`./dist`)
+    return this.gulp.dest(dist)
   }
 
   src (_folder) {
