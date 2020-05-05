@@ -62,9 +62,20 @@ class WebsiteBuilder {
     gulp.task(
       `scss`,
       gulp.series(
-        `clean`,
+        `cleanScss`,
         gulp.parallel(
           `sass`,
+        ),
+      ),
+      (callback) => { callback() }
+    )
+
+    gulp.task(
+      `js`,
+      gulp.series(
+        `cleanJs`,
+        gulp.parallel(
+          `js`,
         ),
       ),
       (callback) => { callback() }
