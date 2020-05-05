@@ -35,8 +35,11 @@ class Javascript extends Base {
       transform: [`babelify-9`]
     })
 
+    const { allJsFile } = this.config
+    const allFile = allJsFile || 'all.js'
+
     return b.bundle()
-      .pipe(source(file).on(`error`, this.log))
+      .pipe(source(allFile).on(`error`, this.log))
       .pipe(buffer().on(`error`, this.log))
       .pipe(gulpif(!(this.release), sourcemaps.init().on(`error`, this.log)))
       .pipe(gulpif(this.release, uglify().on(`error`, this.log)))
