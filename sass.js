@@ -13,11 +13,18 @@ class Sass extends Base {
     super(gulp, config)
 
     gulp.task(`sass`, () => this.sass())
-    gulp.task(`watch-sass`, () => gulp.watch(`./src/assets/css/**/*`, gulp.series(`sass`)))
+    
+    const { sassWatchPath } = config
+    const watchPath = sassWatchPath || `./src/assets/css/**/*`
+    gulp.task(`watch-sass`, () => gulp.watch(watchPath, gulp.series(`sass`)))
   }
 
   sass() {
-    return this.gulp.src(`./src/assets/css/all.scss`)
+    const { scssPath, scssDest } = config
+    const path = scssPath || `./src/assets/css/all.scss`;
+    const dest = scssDest || `assets/css`;
+
+    return this.gulp.src(path)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
       .pipe(concat('all.min.css'))
@@ -25,7 +32,7 @@ class Sass extends Base {
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
       .pipe(stripCssComments({ preserve: false }))
       .pipe(cleanCSS())
-      .pipe(this.dest('assets/css'));
+      .pipe(this.dest(dest));
   }
 }
 

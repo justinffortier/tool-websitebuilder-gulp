@@ -58,6 +58,17 @@ class WebsiteBuilder {
       ),
       (callback) => { callback() }
     )
+
+    gulp.task(
+      `scss`,
+      gulp.series(
+        `clean`,
+        gulp.parallel(
+          `sass`,
+        ),
+      ),
+      (callback) => { callback() }
+    )
   }
 }
 
