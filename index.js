@@ -12,7 +12,7 @@ const Video = require('./video.js')
 const Docs = require('./docs.js')
 
 class WebsiteBuilder {
-  constructor (gulp, config) {
+  constructor(gulp, config) {
     this.browse = new Browse(gulp, config)
     this.clean = new Clean(gulp, config)
     this.fonts = new Fonts(gulp, config)
@@ -86,6 +86,20 @@ class WebsiteBuilder {
       gulp.series(
         `cleanScss`,
         `cleanJs`,
+        `js`,
+        `scss`,
+        gulp.parallel(`watch-js`, `watch-sass`)
+      ),
+      (callback) => { callback() }
+    )
+
+    gulp.task(
+      `develop-js-scss-fonts`,
+      gulp.series(
+        `cleanScss`,
+        `cleanJs`,
+        `cleanFonts`,
+        `fonts`,
         `js`,
         `scss`,
         gulp.parallel(`watch-js`, `watch-sass`)
