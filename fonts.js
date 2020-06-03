@@ -10,7 +10,6 @@ class Fonts extends Base {
 
   fonts() {
     const { fontDest } = this.config
-    console.log(fontDest);
 
     const dest = fontDest || `assets/webfonts`
     return this.gulp.src(`./node_modules/@fortawesome/fontawesome-free/webfonts/*`)
