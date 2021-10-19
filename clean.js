@@ -27,12 +27,12 @@ class Delete extends Base {
   }
 
   cleanJs() {
-    const { jsDest } = this.config
+    const { jsDest, distPath } = this.config
     if (!jsDest) {
       console.log('Config: "jsDest" is required to clean Js ');
       return;
     }
-    return this.gulp.src(`${jsDest}/**/*`, { read: false })
+    return this.gulp.src(`${distPath}/${jsDest}/**/*`, { read: false })
       .pipe(rm())
   }
 
