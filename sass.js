@@ -14,7 +14,7 @@ class Sass extends Base {
     this.config = config
 
     gulp.task(`sass`, () => this.sass())
-    
+
     const { scssWatchPath } = config
     const watchPath = scssWatchPath || `./src/assets/css/**/*`
     gulp.task(`watch-sass`, () => {
@@ -24,15 +24,15 @@ class Sass extends Base {
   }
 
   sass() {
-    const { scssPath, scssDest } = this.config
+    const { scssPath, scssDest, scssDestFile } = this.config
     const path = scssPath || `./src/assets/css/all.scss`;
     const dest = scssDest || `assets/css`;
 
     return this.gulp.src(path)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
-      .pipe(concat('all.min.css'))
-      .pipe(concat('all.css'))
+      .pipe(concat(scssDestFile || 'all.min.css'))
+      .pipe(concat(scssDestFile || 'all.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
       .pipe(stripCssComments({ preserve: false }))
       .pipe(cleanCSS())
