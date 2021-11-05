@@ -8,25 +8,24 @@ const sourcemaps = require('gulp-sourcemaps')
 const Base = require('./base.js')
 
 class Javascript extends Base {
-  constructor (gulp, config) {
+  constructor(gulp, config) {
     super(gulp, config)
     this.config = config
 
     gulp.task(`js`, () => this.javascript())
-    const { jsWatchPath } = config
-    const watchPath = jsWatchPath || `./src/assets/js/**/*`
+    const watchPath = this.config.jsWatchPath || `./src/assets/js/**/*`
     gulp.task(`watch-js`, () => {
       console.log('Watching JS at: ', watchPath);
       return gulp.watch(watchPath, gulp.series(`js`))
     })
   }
 
-  javascript () {
-    const { jsPath, jsDest } = this.config
-    const path = jsPath || `src/assets/js/all.js`;
+  javascript() {
+    const { jsSrcFilePath, jsDest } = this.config
+    const path = jsSrcFilePath || `src/assets/js/all.js`;
     const dest = jsDest || `assets/js`;
 
-    this.log(`Building Javascript [Optimized=${this.release}]`)
+    this.log(`Building Javascript [Optimized=true]`)
     const b = browserify(path, {
       debug: !(this.release),
       targets: {
@@ -35,8 +34,8 @@ class Javascript extends Base {
       transform: [`babelify-9`]
     })
 
-    const { allJsFile } = this.config
-    const allFile = allJsFile || 'all.js'
+    const { jsDestFile } = this.config
+    const allFile = jsDestFile || 'all.js'
 
     return b.bundle()
       .pipe(source(allFile).on(`error`, this.log))

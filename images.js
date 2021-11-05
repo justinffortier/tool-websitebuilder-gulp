@@ -7,13 +7,20 @@ class Images extends Base {
     super(gulp, config)
     this.config = config
 
+    const watchPath = this.config.imageWatchPath || '`./src/assets/images/**/*`'
     gulp.task(`main-images`, () => this.mainImages())
     gulp.task(`images`, gulp.series(`main-images`))
+    gulp.task(`watch-images`, () => {
+      console.log('Watching images at: ', watchPath);
+      return gulp.watch(watchPath, gulp.series(`main-images`))
+    })
   }
 
   mainImages() {
-    const imgDest = config.imgDest || '/assets/img'
-    return this.src(`${imgDest}/**/**`)
+    const { imgDest, imgSrcPath } = this.config
+    const dest = imgDest || `assets/images`
+    const src = imgSrcPath || `./src/assets/images`
+    return this.gulp.src(src + '/*')
       .pipe(gulpif(this.release, imagemin([
         imagemin.gifsicle({ interlaced: true }),
         imagemin.jpegtran({ progressive: true }),
@@ -25,7 +32,7 @@ class Images extends Base {
           ]
         })
       ])))
-      .pipe(this.dest(`assets/img`))
+      .pipe(this.dest(dest))
   }
 }
 

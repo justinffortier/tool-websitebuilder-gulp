@@ -15,8 +15,7 @@ class Sass extends Base {
 
     gulp.task(`sass`, () => this.sass())
 
-    const { scssWatchPath } = config
-    const watchPath = scssWatchPath || `./src/assets/css/**/*`
+    const watchPath = this.config.scssWatchPath || `./src/assets/css/**/*`
     gulp.task(`watch-sass`, () => {
       console.log('Watching SCSS at: ', watchPath);
       return gulp.watch(watchPath, gulp.series(`sass`))
@@ -24,8 +23,8 @@ class Sass extends Base {
   }
 
   sass() {
-    const { scssPath, scssDest, scssDestFile } = this.config
-    const path = scssPath || `./src/assets/css/all.scss`;
+    const { scssSrcFilePath, scssDest, scssDestFile } = this.config
+    const path = scssSrcFilePath || `./src/assets/css/all.scss`;
     const dest = scssDest || `assets/css`;
 
     return this.gulp.src(path)

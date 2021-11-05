@@ -60,34 +60,8 @@ class WebsiteBuilder {
     )
 
     gulp.task(
-      `scss`,
-      gulp.series(
-        `cleanScss`,
-        gulp.parallel(
-          `sass`,
-        ),
-      ),
-      (callback) => { callback() }
-    )
-
-    gulp.task(
-      `js`,
-      gulp.series(
-        `cleanJs`,
-        gulp.parallel(
-          `js`,
-        ),
-      ),
-      (callback) => { callback() }
-    )
-
-    gulp.task(
       `develop-js-scss`,
       gulp.series(
-        `cleanScss`,
-        `cleanJs`,
-        `js`,
-        `scss`,
         gulp.parallel(`watch-js`, `watch-sass`)
       ),
       (callback) => { callback() }
@@ -96,13 +70,20 @@ class WebsiteBuilder {
     gulp.task(
       `develop-js-scss-fonts`,
       gulp.series(
-        `cleanScss`,
-        `cleanJs`,
-        `cleanFonts`,
+        `fonts`,
+        gulp.parallel(`watch-js`, `watch-sass`, `watch-fonts`)
+      ),
+      (callback) => { callback() }
+    )
+
+    gulp.task(
+      `develop-js-scss-fonts-images`,
+      gulp.series(
         `fonts`,
         `js`,
-        `scss`,
-        gulp.parallel(`watch-js`, `watch-sass`)
+        `sass`,
+        `images`,
+        gulp.parallel(`watch-js`, `watch-sass`, `watch-fonts`, `watch-images`)
       ),
       (callback) => { callback() }
     )
