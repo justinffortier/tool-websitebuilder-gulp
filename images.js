@@ -17,8 +17,8 @@ class Images extends Base {
   }
 
   mainImages() {
-    const { imgDest, imgSrcPath } = this.config
-    const dest = imgDest || `assets/images`
+    const { imgDestPath, imgSrcPath } = this.config
+    const dest = imgDestPath || `assets/images`
     const src = imgSrcPath || `./src/assets/images`
     return this.gulp.src(src + '/*')
       .pipe(gulpif(this.release, imagemin([

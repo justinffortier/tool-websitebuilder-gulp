@@ -23,15 +23,15 @@ class Sass extends Base {
   }
 
   sass() {
-    const { scssSrcFilePath, scssDest, scssDestFile } = this.config
+    const { scssSrcFilePath, scssDestPath, cssOutputFile } = this.config
     const path = scssSrcFilePath || `./src/assets/css/all.scss`;
-    const dest = scssDest || `assets/css`;
+    const dest = scssDestPath || `assets/css`;
 
     return this.gulp.src(path)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
       .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
-      .pipe(concat(scssDestFile || 'all.min.css'))
-      .pipe(concat(scssDestFile || 'all.css'))
+      .pipe(concat(cssOutputFile || 'all.min.css'))
+      .pipe(concat(cssOutputFile || 'all.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
       .pipe(stripCssComments({ preserve: false }))
       .pipe(cleanCSS())

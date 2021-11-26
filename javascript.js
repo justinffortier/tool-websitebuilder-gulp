@@ -21,9 +21,9 @@ class Javascript extends Base {
   }
 
   javascript() {
-    const { jsSrcFilePath, jsDest } = this.config
+    const { jsSrcFilePath, jsDestPath } = this.config
     const path = jsSrcFilePath || `src/assets/js/all.js`;
-    const dest = jsDest || `assets/js`;
+    const dest = jsDestPath || `assets/js`;
 
     this.log(`Building Javascript [Optimized=true]`)
     const b = browserify(path, {
@@ -34,8 +34,8 @@ class Javascript extends Base {
       transform: [`babelify-9`]
     })
 
-    const { jsDestFile } = this.config
-    const allFile = jsDestFile || 'all.js'
+    const { jsOutputFile } = this.config
+    const allFile = jsOutputFile || 'all.js'
 
     return b.bundle()
       .pipe(source(allFile).on(`error`, this.log))

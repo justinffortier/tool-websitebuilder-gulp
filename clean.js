@@ -17,32 +17,32 @@ class Delete extends Base {
   }
 
   cleanScss() {
-    const { scssDest } = this.config
-    if (!scssDest) {
-      console.log('Config: "scssDest" is required to clean Scss ');
+    const { scssDestPath } = this.config
+    if (!scssDestPath) {
+      console.log('Config: "scssDestPath" is required to clean Scss ');
       return;
     }
-    return this.gulp.src(`${scssDest}/**/*`, { read: false })
+    return this.gulp.src(`${scssDestPath}/**/*`, { read: false })
       .pipe(rm())
   }
 
   cleanJs() {
-    const { jsDest, distPath } = this.config
-    if (!jsDest) {
-      console.log('Config: "jsDest" is required to clean Js ');
+    const { jsDestPath, distPath } = this.config
+    if (!jsDestPath) {
+      console.log('Config: "jsDestPath" is required to clean Js ');
       return;
     }
-    return this.gulp.src(`${distPath}/${jsDest}/**/*`, { read: false })
+    return this.gulp.src(`${distPath}/${jsDestPath}/**/*`, { read: false })
       .pipe(rm())
   }
 
   cleanFonts() {
-    const { fontDest } = this.config
-    if (!fontDest) {
-      console.log('Config: "fontDest" is required to clean Js ');
+    const { fontDestPath } = this.config
+    if (!fontDestPath) {
+      console.log('Config: "fontDestPath" is required to clean Js ');
       return;
     }
-    return this.gulp.src(`${fontDest}/**/*`, { read: false })
+    return this.gulp.src(`${fontDestPath}/**/*`, { read: false })
       .pipe(rm())
   }
 }
