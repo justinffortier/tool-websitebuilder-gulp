@@ -23,6 +23,7 @@ class Sass extends Base {
   }
 
   sass() {
+    console.log('Updating scss');
     const { scssSrcFilePath, scssDestPath, cssOutputFile } = this.config
     const path = scssSrcFilePath || `./src/assets/css/all.scss`;
     const dest = scssDestPath || `assets/css`;
