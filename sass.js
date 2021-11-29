@@ -27,10 +27,11 @@ class Sass extends Base {
     const { scssSrcFilePath, scssDestPath, cssOutputFile } = this.config
     const path = scssSrcFilePath || `./src/assets/css/all.scss`;
     const dest = scssDestPath || `assets/css`;
+    const sass = gulpSass(require('sass'))
 
     return this.gulp.src(path)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
-      .pipe(gulpSass({ includePaths: [`./node_modules/`] }).on(`error`, gulpSass.logError))
+      .pipe(sass({ includePaths: [`./node_modules/`] }).on(`error`, sass.logError))
       .pipe(concat(cssOutputFile || 'all.min.css'))
       .pipe(concat(cssOutputFile || 'all.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
