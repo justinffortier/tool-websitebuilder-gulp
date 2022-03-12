@@ -4,6 +4,8 @@ const { exec } = require("child_process");
 const createPackageJson = () => {
     const packageJson = require('../../package.json');
     packageJson.scripts = packageJson.scripts ? packageJson.scripts : {}
+    packageJson.dependencies = packageJson.dependencies ? packageJson.dependencies : {}
+    packageJson.devDependencies = packageJson.devDependencies ? packageJson.devDependencies : {}
     packageJson.scripts.start = "./node_modules/gulp/bin/gulp.js develop";
     packageJson.scripts.build = "./node_modules/gulp/bin/gulp.js develop --release true";
     packageJson.scripts.build = "./node_modules/gulp/bin/gulp.js develop --release true";
