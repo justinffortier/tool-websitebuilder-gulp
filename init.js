@@ -1,9 +1,31 @@
 const fs = require('fs');
+const { exec } = require("child_process");
 
 const createPackageJson = () => {
     const packageJson = require('../../package.json');
-    packageJson.scripts.develop = "./node_modules/gulp/bin/gulp.js develop";
+    packageJson.scripts = packageJson.scripts ? packageJson.scripts : {}
+    packageJson.scripts.start = "./node_modules/gulp/bin/gulp.js develop";
     packageJson.scripts.build = "./node_modules/gulp/bin/gulp.js develop --release true";
+    packageJson.scripts.build = "./node_modules/gulp/bin/gulp.js develop --release true";
+    packageJson.dependencies = {
+        ...packageJson.dependencies,
+        "babelify-9": "^9.0.0-alpha.1",
+        "gulp": "^4.0.2",
+        "bootstrap": "^5.1.3"
+    },
+
+    packageJson.devDependencies = {
+        ...packageJson.devDependencies,
+        "@babel/core": "^7.15.8",
+        "@babel/plugin-proposal-class-properties": "^7.16.7",
+        "@babel/plugin-transform-runtime": "^7.17.0",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "@babel/register": "^7.16.0",
+        "browserify": "^17.0.0",
+        "eslint": "^8.0.1",
+        "gulp-cli": "^2.3.0",
+    },
     
     fs.writeFile(__dirname + "/../../package.json", JSON.stringify(packageJson, null, 2), function(err) {
         if(err) {
@@ -26,6 +48,7 @@ const createFolders = () => {
         './src/views',
         './src/views/common',
         './src/views/widgets',
+        './locales',
     ]
     
     folders.forEach((folder) => {
@@ -104,6 +127,8 @@ const init = async () => {
         source: 'root',
         root: true
     })
+
+    console.log('Success!! Please run yarn install to install new dependencies, then run yarn start to start view your website')
 }
 
 init()
