@@ -92,7 +92,6 @@ const copyBoilerPlate = async ({
         
         await Promise.all(promises).then(_ => {
             // do what you want
-            console.log('done');
         }).catch(err => {
             // handle I/O error
             console.error(err);
