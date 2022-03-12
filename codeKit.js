@@ -20,7 +20,7 @@ class Kit extends Base {
       .on(`error`, (err) => {
         util.log(err.message)
       })
-      .pipe(mustache(`./locales/${this.language()}/strings.json`))
+      .pipe(mustache(`.src/locales/${this.language()}/strings.json`))
       .pipe(gulpif(this.config.release, htmlmin({ collapseWhitespace: true })))
       .pipe(rename((path) => {
         path.basename = `index`

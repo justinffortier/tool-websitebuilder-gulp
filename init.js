@@ -50,7 +50,7 @@ const createFolders = () => {
         './src/views',
         './src/views/common',
         './src/views/widgets',
-        './locales',
+        './src/locales',
     ]
     
     folders.forEach((folder) => {
@@ -123,6 +123,11 @@ const init = async () => {
     await copyBoilerPlate({
         source: 'locales',
         dest: 'locales',
+        root: false
+    })
+    await copyBoilerPlate({
+        source: 'pages',
+        dest: 'pages',
         root:false
     })
     await copyBoilerPlate({
