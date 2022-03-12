@@ -122,7 +122,7 @@ const init = async () => {
     })
     await copyBoilerPlate({
         source: 'locales',
-        dest: 'locales',
+        dest: 'locales/en',
         root: false
     })
     await copyBoilerPlate({
