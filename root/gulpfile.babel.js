@@ -1,5 +1,5 @@
 import gulp from 'gulp'
-import WebsiteBuilder from 'website-builder'
+import WebsiteBuilder from 'website-builder-gulp'
 
 gulp.WebsiteBuilder = new WebsiteBuilder(gulp, {
   "baseUrl": "https://example.com",
