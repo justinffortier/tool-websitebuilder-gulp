@@ -17,7 +17,7 @@ const createFolders = () => {
     const folders = [
         './src',
         './src/assets',
-        './src/assets/css',
+        './src/assets/scss',
         './src/assets/js',
         './src/assets/docs',
         './src/assets/fonts',
@@ -91,8 +91,8 @@ const init = async () => {
         root:false
     })
     await copyBoilerPlate({
-        source: 'assets/css',
-        dest: 'assets/css',
+        source: 'assets/scss',
+        dest: 'assets/scss',
         root:false
     })
     await copyBoilerPlate({
