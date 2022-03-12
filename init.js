@@ -51,6 +51,7 @@ const createFolders = () => {
         './src/views/common',
         './src/views/widgets',
         './src/locales',
+        './src/locales/en',
     ]
     
     folders.forEach((folder) => {
