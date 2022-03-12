@@ -1,5 +1,5 @@
 {
-  "name": "website-builder",
+  "name": "website-builder-gulp",
   "version": "1.0.2",
   "author": "justinffortier",
   "license": "UNLICENSED",
@@ -26,5 +26,19 @@
     "sass": "^1.43.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
-  }
+  },
+  "description": "A website builder for using gulp",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinffortier/tool-websitebuilder-gulp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justinffortier/tool-websitebuilder-gulp/issues"
+  },
+  "homepage": "https://github.com/justinffortier/tool-websitebuilder-gulp#readme"
 }
