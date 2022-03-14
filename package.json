@@ -1,8 +1,8 @@
 {
   "name": "website-builder-gulp",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "justinffortier",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "gulp": "^4.0.0",
@@ -37,6 +37,19 @@
     "type": "git",
     "url": "git+https://github.com/justinffortier/tool-websitebuilder-gulp.git"
   },
+  "keywords": [
+    "gulp",
+    "web",
+    "website",
+    "web builder",
+    "gulp web builder",
+    "gulp website builder",
+    "codeKit",
+    "optimized JS",
+    "scss",
+    "uglify JS",
+    "babelify"
+  ],
   "bugs": {
     "url": "https://github.com/justinffortier/tool-websitebuilder-gulp/issues"
   },
