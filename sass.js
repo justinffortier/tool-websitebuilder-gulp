@@ -1,37 +1,56 @@
-const cleanCSS = require('gulp-clean-css')
-const gulpSass = require('gulp-sass')
-const gulpif = require('gulp-if')
-const sourcemaps = require('gulp-sourcemaps')
+const cleanCSS = require('gulp-clean-css');
+const gulpSass = require('gulp-sass');
+const gulpif = require('gulp-if');
+const sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
+const purgecss = require('gulp-purgecss');
+
 const stripCssComments = require('gulp-strip-css-comments');
 
-
-const Base = require('./base')
+const Base = require('./base');
 
 class Sass extends Base {
   constructor(gulp, config) {
-    super(gulp, config)
-    this.config = config
+    super(gulp, config);
+    this.config = config;
 
-    gulp.task(`sass`, () => this.sass())
+    gulp.task(`sass`, () => this.sass());
 
-    const watchPath = this.config.scssWatchPath || `./src/assets/css/**/*`
+    gulp.task('purgecss', () => {
+      return gulp
+        .src('dist/**/*.css')
+        .pipe(
+          purgecss({
+            content: [
+              './dist/**/*.html',
+              './dist/**/*.liquid',
+              'dist/**/*.php',
+            ],
+          })
+        )
+        .pipe(gulp.dest('build/css'));
+    });
+
+    const watchPath = this.config.scssWatchPath || `./src/assets/css/**/*`;
     gulp.task(`watch-sass`, () => {
       console.log('Watching SCSS at: ', watchPath);
-      return gulp.watch(watchPath, gulp.series(`sass`))
-    })
+      return gulp.watch(watchPath, gulp.series(`sass`));
+    });
   }
 
   sass() {
     console.log('Updating scss');
-    const { scssSrcFilePath, scssDestPath, cssOutputFile } = this.config
+    const { scssSrcFilePath, scssDestPath, cssOutputFile } = this.config;
     const path = scssSrcFilePath || `./src/assets/css/all.scss`;
     const dest = scssDestPath || `assets/css`;
-    const sass = gulpSass(require('sass'))
+    const sass = gulpSass(require('sass'));
 
-    return this.gulp.src(path)
+    return this.gulp
+      .src(path)
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.init()))
-      .pipe(sass({ includePaths: [`./node_modules/`] }).on(`error`, sass.logError))
+      .pipe(
+        sass({ includePaths: [`./node_modules/`] }).on(`error`, sass.logError)
+      )
       .pipe(concat(cssOutputFile || 'all.min.css'))
       .pipe(concat(cssOutputFile || 'all.css'))
       .pipe(gulpif(!this.gulp.optimize, sourcemaps.write()))
@@ -41,4 +60,4 @@ class Sass extends Base {
   }
 }
 
-module.exports = Sass
+module.exports = Sass;
